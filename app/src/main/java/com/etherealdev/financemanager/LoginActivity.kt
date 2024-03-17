@@ -21,7 +21,10 @@ import com.etherealdev.financemanager.databinding.LoginactivityBinding
 import com.etherealdev.financemanager.ui.theme.FinanceManagerTheme
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.auth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
 
 
 class LoginActivity : ComponentActivity() {
@@ -43,6 +46,7 @@ class LoginActivity : ComponentActivity() {
         binding.loginButton.setOnClickListener {
 
             val email = binding.loginEmail.text.toString()
+//            val email = "k@k.com"
             val password = binding.loginPassword.text.toString()
             val view: View? = this.currentFocus
             val keyb = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
@@ -81,13 +85,19 @@ class LoginActivity : ComponentActivity() {
                         finish()
                     }
                     else{
+//                        val errorCode = task.exception?.errorCode
+                        val errorMessage = task.exception?.message
+                        val errorCode = (task.exception as? FirebaseAuthException)?.errorCode.toString()
                         // If sign in fails, display a message to the user.
-                        Log.w(TAG, "signInWithEmail:failure", task.exception)
-                        Toast.makeText(
-                            baseContext,
-                            "Authentication failed.",
-                            Toast.LENGTH_SHORT,
-                        ).show()
+                        if (errorCode != null) {
+                            Log.w(TAG, errorCode)
+                        }
+                        when(errorCode){
+//                            "ERROR_INVALID_CREDENTIAL" -> Toast.makeText(this, "Wrong Password",Toast.LENGTH_LONG).show()
+                            "ERROR_USER_NOT_FOUND" -> Toast.makeText(this, "User Does Not Exist",Toast.LENGTH_LONG).show()
+                            else -> Toast.makeText(this, errorCode,Toast.LENGTH_LONG).show()
+                        }
+
                     }
 
                 }

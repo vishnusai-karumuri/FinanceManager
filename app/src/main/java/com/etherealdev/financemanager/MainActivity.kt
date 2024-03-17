@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var showNameButton: Button
     private lateinit var editText: EditText
     private lateinit var analytics: FirebaseAnalytics
-    private lateinit var binding:ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         showNameButton.setBackgroundColor(Color.BLACK)
         //mybutton.setText("Show")
 
-        onClickbutton.setOnClickListener{
+        onClickbutton.setOnClickListener {
             myTextView.visibility = View.VISIBLE
             myTextView.setTextColor(Color.MAGENTA)
             myTextView.text = "On Click Event Listener"
@@ -68,27 +68,26 @@ class MainActivity : AppCompatActivity() {
             myTextView.visibility = View.VISIBLE
             myTextView.setTextColor(Color.MAGENTA)
             myTextView.text = "Binding Working"
-        }
+            6
 
-        showNameButton.setOnClickListener{
-            if (editText.text.toString().isNotEmpty()){
-                val input = editText.text.toString()
-                myTextView.visibility = View.VISIBLE
-                myTextView.setTextColor(Color.MAGENTA)
-                myTextView.text = input
+            showNameButton.setOnClickListener {
+                if (editText.text.toString().isNotEmpty()) {
+                    val input = editText.text.toString()
+                    myTextView.visibility = View.VISIBLE
+                    myTextView.setTextColor(Color.MAGENTA)
+                    myTextView.text = input
+                } else {
+                    myTextView.visibility = View.VISIBLE
+                    myTextView.setTextColor(Color.RED)
+                    myTextView.text = "No Text Entered"
+                }
             }
-            else{
-                myTextView.visibility = View.VISIBLE
-                myTextView.setTextColor(Color.RED)
-                myTextView.text = "No Text Entered"
-            }
-        }
 
-    }
-    fun showMessage(view: View)
-    {
-        myTextView.visibility = View.VISIBLE
-        myTextView.setTextColor(Color.MAGENTA)
-        myTextView.text = "Button Function"
+        }
+        fun showMessage(view: View) {
+            myTextView.visibility = View.VISIBLE
+            myTextView.setTextColor(Color.MAGENTA)
+            myTextView.text = "Button Function"
+        }
     }
 }
