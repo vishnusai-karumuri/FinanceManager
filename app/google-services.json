@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "977497097594",
+    "project_id": "financemanager-4bc3b",
+    "storage_bucket": "financemanager-4bc3b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:977497097594:android:94547509441275a3f882c3",
+        "android_client_info": {
+          "package_name": "com.etherealdev.financemanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "977497097594-7q1shm8gn51qiqjlsmluqt187c7bvdgs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFSdbDV0FakYT2egggwr7FRImSEJGmluk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "977497097594-7q1shm8gn51qiqjlsmluqt187c7bvdgs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

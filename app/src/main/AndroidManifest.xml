@@ -13,8 +13,14 @@
         android:theme="@style/Theme.FinanceManager"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
+            android:exported="false"
+            android:label="@string/title_activity_login"
+            android:theme="@style/Theme.FinanceManager" />
+        <activity
+            android:name=".SplashScreen"
             android:exported="true"
+            android:label="@string/title_activity_splash_screen"
             android:theme="@style/Theme.FinanceManager">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,6 +28,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:exported="true"
+            android:label="@string/title_activity_login" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.FinanceManager" />
     </application>
 
 </manifest>
