@@ -90,18 +90,26 @@ class LoginActivity : ComponentActivity() {
                         val errorCode = (task.exception as? FirebaseAuthException)?.errorCode.toString()
                         // If sign in fails, display a message to the user.
                         if (errorCode != null) {
-                            Log.w(TAG, errorCode)
+                            Log.d(TAG, errorCode)
                         }
                         when(errorCode){
 //                            "ERROR_INVALID_CREDENTIAL" -> Toast.makeText(this, "Wrong Password",Toast.LENGTH_LONG).show()
                             "ERROR_USER_NOT_FOUND" -> Toast.makeText(this, "User Does Not Exist",Toast.LENGTH_LONG).show()
                             else -> Toast.makeText(this, errorCode,Toast.LENGTH_LONG).show()
                         }
-
                     }
-
                 }
             }
+        }
+        binding.signupIntentButton.setOnClickListener {
+            val email: String = binding.loginEmail.text.toString()
+            val pwd: String = binding.loginPassword.text.toString()
+//            Log.d(TAG,email)
+            val intent = Intent(this, SignupActivity::class.java)
+            intent.putExtra("Email", email)
+            intent.putExtra("Password",pwd)
+            startActivity(intent)
+            finish()
         }
     }
 }
