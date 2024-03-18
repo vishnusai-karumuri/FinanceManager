@@ -1,6 +1,7 @@
 package com.etherealdev.financemanager
 
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
@@ -18,15 +19,21 @@ import android.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.etherealdev.financemanager.databinding.SignupactivityBinding
 import com.etherealdev.financemanager.ui.theme.FinanceManagerTheme
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 
 @Suppress("DEPRECATION")
 class SignupActivity : ComponentActivity() {
     private lateinit var binding: SignupactivityBinding
+    private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = SignupactivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        auth = Firebase.auth
 
         var email: String = intent.getStringExtra("Email").toString()
         var pwd: String = intent.getStringExtra("Password").toString()
@@ -69,7 +76,22 @@ class SignupActivity : ComponentActivity() {
             }
             else if(email.isValidEmail() && pwd.equals(cnfpwd) && pwd.length >= 6)
             {
-                Toast.makeText(this, "Sign up Success", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this, "Sign up Success", Toast.LENGTH_SHORT).show()
+                auth.createUserWithEmailAndPassword(email,pwd)
+                    .addOnCompleteListener(this){
+                        task ->
+                        if(task.isSuccessful)
+                        {
+                            Log.d(TAG,"Create User Successful")
+                            val user = auth.currentUser
+                            startActivity(Intent(this,MainActivity::class.java))
+                            finish()
+                        }
+                        else
+                        {
+                            Log.w(TAG, "Create User Failed")
+                        }
+                    }
             }
         }
     }
