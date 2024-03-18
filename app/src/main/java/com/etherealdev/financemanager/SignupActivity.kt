@@ -13,6 +13,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import android.graphics.Color
+//import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.etherealdev.financemanager.databinding.SignupactivityBinding
 import com.etherealdev.financemanager.ui.theme.FinanceManagerTheme
@@ -41,9 +43,33 @@ class SignupActivity : ComponentActivity() {
         }
 
         binding.signupButton.setOnClickListener{
+            pwd = binding.signupPassword.text.toString()
+            val cnfpwd = binding.signupConfirmPassword.text.toString()
             email = binding.signupEmail.text.toString()
             if(!email.isValidEmail()){
                 Toast.makeText(this, "Email not Valid", Toast.LENGTH_SHORT).show()
+                binding.SingupErrorText.setText("Email Address Not valid")
+                binding.SingupErrorText.setTextColor(Color.RED)
+            }
+            else if(pwd.isEmpty() || cnfpwd.isEmpty())
+            {
+                binding.SingupErrorText.setText("Password is Empty")
+            }
+            else if(email.isEmpty())
+            {
+                binding.SingupErrorText.setText("Email Address Empty")
+            }
+            else if (!pwd.equals(cnfpwd))
+            {
+                binding.SingupErrorText.setText("Passwords do not match")
+            }
+            else if(pwd.length < 6 || cnfpwd.length < 6)
+            {
+                binding.SingupErrorText.setText("Password is shorter than 6 characters : $pwd + cnfpwd" )
+            }
+            else if(email.isValidEmail() && pwd.equals(cnfpwd) && pwd.length >= 6)
+            {
+                Toast.makeText(this, "Sign up Success", Toast.LENGTH_SHORT).show()
             }
         }
     }
