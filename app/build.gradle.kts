@@ -64,6 +64,8 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     //Firebase Auth
     implementation("com.google.firebase:firebase-auth")
+    //card view
+    implementation("androidx.cardview:cardview:1.0.0")
 
 
     implementation(libs.androidx.core.ktx)
@@ -91,4 +93,5 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
 }
